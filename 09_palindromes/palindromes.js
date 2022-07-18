@@ -1,8 +1,8 @@
 const palindromes = function (string) {
-    string = string.toLowerCase().match(/[a-z]+/g).join('');
-    let reversed = string.split('').reverse().join('');
-    if (string === reversed) return true;
-    return false;
+  let processed = string.toLowerCase().match(/[a-z0-9]/g).join('');
+  let reversed = processed.split('').reverse().join('');
+  if (processed === reversed) return true;
+  return false;
 };
 
 /*** Other solution *****/
