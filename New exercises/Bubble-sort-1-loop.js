@@ -5,7 +5,7 @@ function sort(list) {
             let temp = list[i + 1];
             list[i + 1] = list[i];
             list[i] = temp;
-            i = -1; // Trick to get it to i = 0 at the next iteration
+            i = -1; // trick to get it to i = 0 at the next iteration
         }
     }
     return list;
