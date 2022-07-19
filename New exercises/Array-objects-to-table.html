@@ -1,0 +1,41 @@
+<h1>Mountains</h1>
+
+<div id="mountains"></div>
+
+<script>
+	const MOUNTAINS = [
+		{ name: "Kilimanjaro", height: 5895, place: "Tanzania" },
+		{ name: "Everest", height: 8848, place: "Nepal" },
+		{ name: "Mount Fuji", height: 3776, place: "Japan" },
+		{ name: "Vaalserberg", height: 323, place: "Netherlands" },
+		{ name: "Denali", height: 6168, place: "United States" },
+		{ name: "Popocatepetl", height: 5465, place: "Mexico" },
+		{ name: "Mont Blanc", height: 4808, place: "Italy/France" }
+	];
+
+	let mountains = document.getElementById('mountains');
+	// Get an array of objects and turn then into a table using keys for the header
+	function createTable(List) {
+		let table = document.createElement('table');
+		let tr = document.createElement('tr');
+		// Header
+		for (key of Object.keys(List[0])) {
+			let th = document.createElement('th');
+			th.textContent = key;
+			tr.appendChild(th);
+			table.appendChild(tr);
+		}
+		// Values
+		for (let i = 0; i <= List.length - 1; i++) {
+			tr = document.createElement('tr');
+			for (value of Object.values(List[i])) {
+				let td = document.createElement('td');
+				td.textContent = value;
+				tr.appendChild(td);
+			}
+			table.appendChild(tr);
+		}
+		return table;
+	}
+	mountains.append(createTable(MOUNTAINS));
+</script>
