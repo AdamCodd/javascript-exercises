@@ -81,54 +81,83 @@
         // Script which takes an initial deposit, a period and interest rate from user input then output the deposit after X months/years.
         let form = document.forms.calculator;
 
-        const moneyBefore = document.getElementById('money-before');
-        const moneyAfter = document.getElementById('money-after');
-        const userSelect = document.querySelector('select');
+        form.money.addEventListener('input', calculate);
+        form.interest.addEventListener('input', calculate);
+        form.months.addEventListener('change', calculate);
 
-        const resultBar = document.getElementById('height-after');
+        function calculate() {
+            let initial = +form.money.value;
+            if (!initial) return;
 
-        let initial = document.querySelector("input[name=\'money\'").getAttribute("value");
-        let interest = document.querySelector("input[name=\'interest\'").getAttribute("value") / 100;
-        let years = (document.querySelector('select option:checked').getAttribute("value")) / 12;
+            let interest = form.interest.value * 0.01;
+            if (!interest) return;
 
-        // initial: the initial money sum
-        // interest: e.g. 0.05 means 5% per year
-        // years: how many years to wait
-        let result = Math.round(initial * (1 + interest) ** years);
-        // Return a green bar for the deposit after interest. Its height is relative to the initial deposit's bar.
-        let barHeight = (result * 100 / initial);
+            let years = form.months.value / 12;
+            if (!years) return;
 
-        moneyBefore.textContent = initial;
-        moneyAfter.textContent = result;
-        resultBar.style.height = barHeight + "px";
+            let result = Math.round(initial * (1 + interest) ** years);
+            let barHeight = (result * 100 / initial) + 'px';
 
-        const userInput = Array.from(document.getElementsByTagName('input'));
-        userInput.forEach(input => {
-            input.addEventListener('input', (event) => {
-                if (event.target.getAttribute("name") === 'money') {
-                    initial = event.target.value;
-                    result = Math.round(initial * (1 + interest) ** years);
-                    moneyBefore.textContent = initial;
-                    moneyAfter.textContent = result;
-                    barHeight = (result * 100 / initial)
-                    resultBar.style.height = barHeight + "px";
-                }
-                if (event.target.getAttribute("name") === 'interest') {
-                    interest = event.target.value / 100;
+            document.getElementById('money-before').textContent = initial;
+            document.getElementById('money-after').textContent = result;
+            document.getElementById('height-after').style.height = barHeight;
+        }
+        calculate();
+
+        /* Previous overcomplicated solution 
+        
+        
+                const moneyBefore = document.getElementById('money-before');
+                const moneyAfter = document.getElementById('money-after');
+                const userSelect = document.querySelector('select');
+        
+                const resultBar = document.getElementById('height-after');
+        
+                let initial = document.querySelector("input[name=money").getAttribute("value");
+                let interest = document.querySelector("input[name=interest").getAttribute("value") / 100;
+                let years = (document.querySelector('select option:checked').getAttribute("value")) / 12;
+        
+                // initial: the initial money sum
+                // interest: e.g. 0.05 means 5% per year
+                // years: how many years to wait
+                let result = Math.round(initial * (1 + interest) ** years);
+        
+                // Return a green bar for the deposit after interest. Its height is relative to the initial deposit's bar.
+                let barHeight = (result * 100 / initial);
+        
+                moneyBefore.textContent = initial;
+                moneyAfter.textContent = result;
+                resultBar.style.height = barHeight + "px";
+        
+                const userInput = Array.from(document.getElementsByTagName('input'));
+                userInput.forEach(input => {
+                    input.addEventListener('input', (event) => {
+                        if (event.target.getAttribute("name") === 'money') {
+                            initial = event.target.value;
+                            result = Math.round(initial * (1 + interest) ** years);
+                            moneyBefore.textContent = initial;
+                            moneyAfter.textContent = result;
+                            barHeight = (result * 100 / initial)
+                            resultBar.style.height = barHeight + "px";
+                        }
+                        if (event.target.getAttribute("name") === 'interest') {
+                            interest = event.target.value / 100;
+                            result = Math.round(initial * (1 + interest) ** years);
+                            barHeight = (result * 100 / initial);
+                            resultBar.style.height = barHeight + "px";
+                            moneyAfter.textContent = result;
+                        }
+                    })
+                });
+                userSelect.addEventListener('change', (event) => {
+                    years = event.target.value / 12;
                     result = Math.round(initial * (1 + interest) ** years);
                     barHeight = (result * 100 / initial);
                     resultBar.style.height = barHeight + "px";
                     moneyAfter.textContent = result;
-                }
-            })
-        });
-        userSelect.addEventListener('change', (event) => {
-            years = event.target.value / 12;
-            result = Math.round(initial * (1 + interest) ** years);
-            barHeight = (result * 100 / initial);
-            resultBar.style.height = barHeight + "px";
-            moneyAfter.textContent = result;
-        })
+                })
+        */
+
     </script>
 
 
