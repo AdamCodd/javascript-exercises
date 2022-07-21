@@ -1,0 +1,26 @@
+<p>🎈</p>
+
+<script>
+    // A little game with a balloon that explodes if inflated more than a certain threehold
+    const para = document.querySelector("p");
+    document.body.style.cssText = "display: flex; justify-content: center; align-items: center;"
+    let size = 20;
+    function inflate(event) {
+        if (event.key == "ArrowUp") {
+            event.preventDefault();
+            size += 5;
+            para.style.fontSize = Math.max(18, size) + "px";
+            console.log(para.style.fontSize);
+            if (size >= 40) {
+                window.removeEventListener("keydown", inflate);
+                para.textContent = "💥";
+            }
+        }
+        if (event.key == "ArrowDown") {
+            event.preventDefault();
+            size -= 5;
+            para.style.fontSize = Math.max(18, size) + "px";
+        }
+    }
+    window.addEventListener("keydown", inflate);
+</script>
