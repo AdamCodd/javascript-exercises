@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .trail {
+            /* className for the trail elements */
+            position: absolute;
+            height: 6px;
+            width: 6px;
+            border-radius: 50%;
+            background: teal;
+        }
+
+        body {
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        // Not working on Chrome?
+        // Number of elements added to the trail
+        for (let i = 1; i <= 3; i++) {
+            let dot = document.createElement("div");
+            dot.className = "trail";
+            dot.style.height = "10px";
+            dot.style.width = "10px";
+            dot.style.left = "-10px";
+            dot.style.top = "-10px";
+            document.body.appendChild(dot);
+        }
+        allDots = Array.from(document.querySelectorAll("div"));
+        // Each element 
+        function trailed(event) {
+            let gap = 10;
+            for (item of allDots) {
+                item.style.left = (event.pageX + gap) + "px";
+                item.style.top = (event.pageY + gap) + "px";
+                gap += 10;
+            } requestAnimationFrame(trailed);
+        } requestAnimationFrame(trailed);
+        window.addEventListener("mousemove", trailed);
+    </script>
+</body>
+
+</html>
