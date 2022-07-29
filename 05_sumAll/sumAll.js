@@ -1,18 +1,18 @@
 let sumAll = function (a, b) {
-    let sum = 0;
-    if (typeof a !== 'number' || typeof b !== 'number' || a < 0 || b < 0) return 'ERROR';
-    if (a < b) {
-        for (let i = a; i <= b; i++) {
-            sum += i;
-        }
+  let sum = 0;
+  if (typeof a !== 'number' || typeof b !== 'number' || a < 0 || b < 0) return 'ERROR';
+  if (a < b) {
+    for (let i = a; i <= b; i++) {
+      sum += i;
     }
-    if (b < a) {
-        for (let i = b; i <= a; i++) {
-            sum += i;
-        }
+  }
+  if (b < a) {
+    for (let i = b; i <= a; i++) {
+      sum += i;
     }
+  }
 
-    return sum;
+  return sum;
 };
 
 /* Other solution */
@@ -33,6 +33,18 @@ const sumAll = function(min, max) {
   return sum;
 };
 
+/* Using Gauss's method (maths)
+let sumAll = function (min, max) {
+  if (!Number.isInteger(min) || !Number.isInteger(max) || min < 0 || max < 0) return "ERROR";
+  if (min > max) {
+    let temp = min;
+    min = max;
+    max = temp;
+  }
+  let sum = 0;
+  sum = max * (max + 1) / 2;
+  return sum;
+};
 */
 
 // Do not edit below this line
