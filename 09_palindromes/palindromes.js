@@ -5,6 +5,7 @@ const palindromes = function (string) {
   return false;
 };
 
+
 /*** Other solution *****/
 /*
 
@@ -19,6 +20,22 @@ const palindromes = function(string) {
 };
 
 */
+
+/* Solution - Algo 
+const palindromes = (string) => {
+  let test = true;
+  string = string.toLowerCase().replace(/[^a-z]/g, "");
+  for (let i = 0; i < string.length / 2; i++) {
+    let firstpart = string[i];
+    let lastpart = string[string.length - i - 1];
+    if (firstpart !== lastpart) {
+      return false;
+    }
+  }
+  return test;
+};
+*/
+
 
 // Do not edit below this line
 module.exports = palindromes;
