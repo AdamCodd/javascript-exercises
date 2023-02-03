@@ -47,7 +47,7 @@ describe('translate', () => {
 	});
 
 	test('counts "qu" as a consonant even when its preceded by a consonant', () => {
-		expect(pigLatin("squuare")).toBe("uaresquay");
+		expect(pigLatin("square")).toBe("aresquay");
 	});
 
 	test('translates many words', () => {

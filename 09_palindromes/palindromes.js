@@ -19,15 +19,14 @@ const palindromes = function(string) {
   );
 };
 
-*/
-
-/* Solution - Algo 
+/*
+ //Solution - Algo : Test if the string is a palindrome =/= reversing the string and compare to the non-reversed string
 const palindromes = (string) => {
   let test = true;
-  string = string.toLowerCase().replace(/[^a-z]/g, "");
-  for (let i = 0; i < string.length / 2; i++) {
-    let firstpart = string[i];
-    let lastpart = string[string.length - i - 1];
+  let str = string.toLowerCase().replace(/[^a-z]/g, "");
+  for (let i = 0; i < str.length / 2; i++) {
+    let firstpart = str[i];
+    let lastpart = str[str.length - i - 1];
     if (firstpart !== lastpart) {
       return false;
     }
