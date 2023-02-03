@@ -33,7 +33,7 @@ const sumAll = function(min, max) {
   return sum;
 };
 
-/* Using Gauss's method (maths)
+/* Using Gauss's method - Only for the sum from 1 to n.
 let sumAll = function (min, max) {
   if (!Number.isInteger(min) || !Number.isInteger(max) || min < 0 || max < 0) return "ERROR";
   if (min > max) {
